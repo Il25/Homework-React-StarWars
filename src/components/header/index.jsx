@@ -11,7 +11,7 @@ const Header = () => {
                 </div>
                 <div className="header_navigation">
                     <ul>
-                        <li activeClassName="active">   
+                        <li>   
                             <Link to="/">Home</Link>
                         </li>
                         <li>
