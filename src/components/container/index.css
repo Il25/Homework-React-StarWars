@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    width: 100%;
+    background-image: url("../../assets/container-image.jpg");
+    min-height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction: column;
+    opacity: 0.9;
+}
+
+.container_title {
+    margin-top: 120px;
+    color: white;
+    font-weight: bold;
+    font-size: 68px;
+    width: 50%;
+    margin-left: 100px;
+}
+
+.container_title_descr {
+    margin-top: 80px;
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+    width: 30%;
+    margin-left: 100px;
+}
+
+@media screen and (max-width: 660px) {
+    .container_title {
+        margin-top: 50px;
+        font-size: 50px;
+    }    
+    .container_title_descr {
+        font-size: 16px;
+    }    
+          
+}
