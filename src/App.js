@@ -9,28 +9,24 @@ import Films from './components/films';
 import Species from './components/species';
 import Vehicles from './components/vehicles';
 import Starships from './components/starships';
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-import { BrowserRouter as Router, Route} from "react-router-dom";
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: {},
-    }
-  };
 
   render() {
     return (
       <Router>
         <div className="App">
           <Header />
-          <Route exact path='/' component={Container}/>
-          <Route path="/people" component={People}/>
-          <Route path="/planets" component={Planets}/>
-          <Route path="/films" component={Films}/>
-          <Route path="/species" component={Species}/>
-          <Route path="/vehicles" component={Vehicles}/>
-          <Route path="/starships" component={Starships}/>
+          <Switch>
+            <Route exact path='/' component={Container}/>
+            <Route exact path="/people" component={People}/>
+            <Route exact path="/planets" component={Planets}/>
+            <Route exact path="/films" component={Films}/>
+            <Route exact path="/species" component={Species}/>
+            <Route exact path="/vehicles" component={Vehicles}/>
+            <Route exact path="/starships" component={Starships}/>
+          </Switch>
           <Footer />
         </div>
       </Router>  

@@ -8,10 +8,10 @@ const Container = () => {
                 Welcome, this is a new universe of Star Wars...
             </div>
             <div className="container_title_descr">
-                Here you can learn a lot about your favorite characters and not only..
+                Here you can find and learn a lot about favorite universe..
             </div>
         </div>
-    )
+    );
 };
 
 export default Container;
