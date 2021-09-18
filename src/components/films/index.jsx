@@ -3,15 +3,16 @@ import "./index.css";
 import "../main_style/index.css";
 
 const Films = () => {
-    const[films, setFilms] = useState({ results: []});
+    const[films, setFilms] = useState([]);
+
+    const getFilms = async(url) => {
+        const response = await fetch(url);
+        let data = await response.json();
+        setFilms([...films, ...data.results]);
+    };
 
     useEffect(() => {
-        const getFilms = async() => {
-            const response = await fetch("https://swapi.dev/api/films");
-            let data = await response.json();
-            setFilms({ ...films, results: [...films.results, ...data.results] });
-        }
-        getFilms();
+        getFilms("https://swapi.dev/api/films");
     }, [])
 
     return (
@@ -25,17 +26,16 @@ const Films = () => {
                     <button className="search_button">Search</button>
                 </div>
                 <div className="columns">
-                        {films?.results.map((films, i) => {
+                        {films?.map((films, i) => {
                            return (
                                <div key={i}>
                                    <p className="name">
-                                       {films.name}
+                                       {films.title}
                                    </p>
                                </div>
                            ) 
                         })}
-                </div>  
-                <button className="addMore_button">Add more</button> 
+                </div> 
             </div>       
         </div>
     );
