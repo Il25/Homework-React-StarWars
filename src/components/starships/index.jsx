@@ -3,17 +3,24 @@ import "./index.css";
 import "../main_style/index.css";
 
 const Starships = () => {
-    const[starships, setStarships] = useState({ results: []});
+    const[starships, setStarships] = useState([]);
+    const [count,setCount] = useState(1);
+    const [addUrl,setAddUrl] = useState(false);
+
+    const getStarships = async(url) => {
+        const response = await fetch(url);
+        let data = await response.json();
+        setStarships([...starships, ...data.results]);
+        setAddUrl(data.next);
+    };    
 
     useEffect(() => {
-        const getStarships = async() => {
-            const response = await fetch("https://swapi.dev/api/starships");
-            let data = await response.json();
-            setStarships({ ...starships, results: [...starships.results, ...data.results] });
-        }
-        getStarships();
-        console.log(starships);
-    }, [])
+        getStarships("https://swapi.dev/api/starships");
+    }, []);
+
+    useEffect(() => {
+        getStarships(addUrl);
+    }, [count]);
 
     return (
         <div className="search_container">
@@ -26,7 +33,7 @@ const Starships = () => {
                     <button className="search_button">Search</button>
                 </div>
                 <div className="columns">
-                        {starships?.results.map((starships, i) => {
+                        {starships?.map((starships, i) => {
                            return (
                                <div key={i}>
                                    <p className="name">
@@ -36,7 +43,7 @@ const Starships = () => {
                            ) 
                         })}
                 </div>  
-                <button className="addMore_button">Add more</button> 
+                <button className="addMore_button" disabled={count > 3} onClick={() => setCount(count + 1)}>Add more</button> 
             </div>       
         </div>
     );

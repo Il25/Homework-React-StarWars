@@ -3,17 +3,24 @@ import "./index.css";
 import "../main_style/index.css";
 
 const Planets = () => {
-    const[planets, setPlanets] = useState({ results: []});
+    const[planets, setPlanets] = useState([]);
+    const [count,setCount] = useState(1);
+    const [addUrl,setAddUrl] = useState(false);
+        
+    const getPlanets = async(url) => {
+        const response = await fetch(url);
+        let data = await response.json();
+        setPlanets([...planets, ...data.results]);
+        setAddUrl(data.next);
+    };
 
     useEffect(() => {
-        const getPlanets = async() => {
-            const response = await fetch("https://swapi.dev/api/planets");
-            let data = await response.json();
-            setPlanets({ ...planets, results: [...planets.results, ...data.results] });
-        }
-        getPlanets();
-        console.log(planets);
-    }, [])
+        getPlanets("https://swapi.dev/api/planets");
+    }, []);
+
+    useEffect(() => {
+        getPlanets(addUrl);
+    }, [count]);
 
     return (
         <div className="search_container">
@@ -26,7 +33,7 @@ const Planets = () => {
                     <button className="search_button">Search</button>
                 </div>
                 <div className="columns">
-                        {planets?.results.map((planets, i) => {
+                        {planets?.map((planets, i) => {
                            return (
                                <div key={i}>
                                    <p className="name">
@@ -36,7 +43,7 @@ const Planets = () => {
                            ) 
                         })}
                 </div>  
-                <button className="addMore_button">Add more</button> 
+                <button className="addMore_button" disabled={count > 5} onClick={() => setCount(count + 1)}>Add more</button> 
             </div>       
         </div>
     );

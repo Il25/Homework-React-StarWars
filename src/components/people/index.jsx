@@ -11,18 +11,16 @@ const People = () => {
         const response = await fetch(url);
         let data = await response.json();
         setPeople([...people, ...data.results]);
-        setAddUrl(data.next)
-        console.log(data.next)
-    }
+        setAddUrl(data.next);
+    };
 
     useEffect(() => {
         getPeople("https://swapi.dev/api/people");
-    }, [])
+    }, []);
     
     useEffect(() => {
         getPeople(addUrl);
-        console.log("next", addUrl)
-    }, [count])
+    }, [count]);
 
     return (
         <div className="search_container">
@@ -45,7 +43,7 @@ const People = () => {
                            ) 
                         })}
                 </div>  
-                <button className="addMore_button" onClick={() => setCount(count + 1)}>Add more</button> 
+                <button className="addMore_button" disabled={count > 8} onClick={() => setCount(count + 1)}>Add more</button> 
             </div>       
         </div>
     );
