@@ -8,7 +8,7 @@ const Container = () => {
                 Welcome, this is a new universe of Star Wars...
             </div>
             <div className="container_title_descr">
-                Here you can find and learn a lot about favorite universe..
+                Here you can find and learn a lot about favorite universe.. 
             </div>
         </div>
     );

@@ -1,7 +1,6 @@
 import React from "react";
 import "./index.css";
 
-
 const Footer = () => {
     return (
         <div className="footer">
@@ -12,7 +11,7 @@ const Footer = () => {
                 0+ Information products published on this site are intended for any audience, unless otherwise indicated additionally in relation to individual materials.
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Footer;
