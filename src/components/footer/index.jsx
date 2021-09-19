@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.css"
+import "./index.css";
 
 
 const Footer = () => {
@@ -11,8 +11,6 @@ const Footer = () => {
             <div className="footer_descr">
                 0+ Information products published on this site are intended for any audience, unless otherwise indicated additionally in relation to individual materials.
             </div>
-           
-
         </div>
     )
 }
