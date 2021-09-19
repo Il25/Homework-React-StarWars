@@ -21,7 +21,7 @@ const Films = () => {
             <div className="search_descr">
                 Here you can find all information about films
             </div>
-            <div>
+            <div className="films_container">
                 <div className="search_div">
                     <input type="text" className="search_input" placeholder="Enter the name of the Films you want to find" onChange={(event) => setSearchFilms(event.target.value)}></input>
                 </div>
