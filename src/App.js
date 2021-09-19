@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/header';
 import Container from './components/container';
 import Footer from './components/footer';
+import About from './components/about';
 import People from './components/people';
 import Planets from './components/planets';
 import Films from './components/films';
@@ -17,9 +18,10 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-          <Header />
+          <Header/>
           <Switch>
             <Route exact path='/' component={Container}/>
+            <Route exact path='/about' component={About}/>
             <Route exact path="/people" component={People}/>
             <Route exact path="/planets" component={Planets}/>
             <Route exact path="/films" component={Films}/>
@@ -27,7 +29,7 @@ class App extends React.Component {
             <Route exact path="/vehicles" component={Vehicles}/>
             <Route exact path="/starships" component={Starships}/>
           </Switch>
-          <Footer />
+          <Footer/>
         </div>
       </Router>  
     );
