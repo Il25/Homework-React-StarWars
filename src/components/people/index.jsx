@@ -6,6 +6,7 @@ const People = () => {
     const[people, setPeople] = useState([]);
     const [count,setCount] = useState(1);
     const [addUrl,setAddUrl] = useState(false);
+    const [searchPeople, setSearchPeople] = useState("");
 
     const getPeople = async(url) => {
         const response = await fetch(url);
@@ -13,7 +14,7 @@ const People = () => {
         setPeople([...people, ...data.results]);
         setAddUrl(data.next);
     };
-
+  
     useEffect(() => {
         getPeople("https://swapi.dev/api/people");
     }, []);
@@ -29,20 +30,25 @@ const People = () => {
             </div>
             <div>
                 <div className="search_div">
-                    <input className="search_input" placeholder="Enter the name of the Characters you want to find"></input>
-                    <button className="search_button">Search</button>
-                </div>
-                <div className="columns">
-                        {people?.map((people, i) => {
-                           return (
-                               <div key={i}>
-                                   <p className="name">
-                                       {people.name}
-                                   </p>
-                               </div>
-                           ) 
-                        })}
-                </div>  
+                    <input type="text" className="search_input" placeholder="Enter the name of the Characters you want to find" onChange={(event) => setSearchPeople(event.target.value)}></input>
+                </div>           
+                {people?.filter((people) => {
+                    if(searchPeople == "") {
+                        return people
+                    } else if(people.name.toLowerCase().includes(searchPeople.toLowerCase())) {
+                        return people
+                    }
+                }).map((people, i) => {
+                    return (
+                        <div className="columns">
+                            <div key={i}>
+                                <p className="name">
+                                    {people.name}
+                                </p>
+                            </div>
+                        </div>   
+                    ) 
+                })}
                 <button className="addMore_button" disabled={count > 8} onClick={() => setCount(count + 1)}>Add more</button> 
             </div>       
         </div>

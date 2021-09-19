@@ -6,6 +6,7 @@ const Species = () => {
     const[species, setSpecies] = useState([]);
     const [count,setCount] = useState(1);
     const [addUrl,setAddUrl] = useState(false);
+    const [searchSpecies, setSearchSpecies] = useState("");
 
     const getSpecies = async(url) => {
         const response = await fetch(url);
@@ -29,20 +30,25 @@ const Species = () => {
             </div>
             <div>
                 <div className="search_div">
-                    <input className="search_input" placeholder="Enter the name of the Species you want to find"></input>
-                    <button className="search_button">Search</button>
+                    <input tupe="text" className="search_input" placeholder="Enter the name of the Species you want to find" onChange={(event) => setSearchSpecies(event.target.value)}></input>
                 </div>
-                <div className="columns">
-                        {species?.map((species, i) => {
-                           return (
-                               <div key={i}>
-                                   <p className="name">
-                                       {species.name}
-                                   </p>
-                               </div>
-                           ) 
-                        })}
-                </div>  
+                {species?.filter((species) => {
+                    if(searchSpecies == "") {
+                        return species
+                    } else if(species.name.toLowerCase().includes(searchSpecies.toLowerCase())) {
+                        return species
+                    }
+                }).map((species, i) => {
+                    return (
+                        <div className="columns">
+                            <div key={i}>
+                                <p className="name">
+                                    {species.name}
+                                </p>
+                            </div>
+                        </div> 
+                    ) 
+                })}
                 <button className="addMore_button" disabled={count > 3} onClick={() => setCount(count + 1)}>Add more</button> 
             </div>       
         </div>

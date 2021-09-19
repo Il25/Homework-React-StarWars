@@ -4,6 +4,7 @@ import "../main_style/index.css";
 
 const Films = () => {
     const[films, setFilms] = useState([]);
+    const [searchFilms, setSearchFilms] = useState("");
 
     const getFilms = async(url) => {
         const response = await fetch(url);
@@ -13,7 +14,7 @@ const Films = () => {
 
     useEffect(() => {
         getFilms("https://swapi.dev/api/films");
-    }, [])
+    }, []);
 
     return (
         <div className="search_container">
@@ -22,20 +23,25 @@ const Films = () => {
             </div>
             <div>
                 <div className="search_div">
-                    <input className="search_input" placeholder="Enter the name of the Films you want to find"></input>
-                    <button className="search_button">Search</button>
+                    <input type="text" className="search_input" placeholder="Enter the name of the Films you want to find" onChange={(event) => setSearchFilms(event.target.value)}></input>
                 </div>
-                <div className="columns">
-                        {films?.map((films, i) => {
-                           return (
-                               <div key={i}>
-                                   <p className="name">
-                                       {films.title}
-                                   </p>
-                               </div>
-                           ) 
-                        })}
-                </div> 
+                {films?.filter((films) => {
+                    if(searchFilms == "") {
+                        return films
+                    } else if(films.title.toLowerCase().includes(searchFilms.toLowerCase())) {
+                        return films
+                    }
+                }).map((films, i) => {
+                    return (
+                        <div className="columns films">
+                            <div key={i}>
+                                <p className="name">
+                                    {films.title}
+                                </p>
+                            </div>
+                        </div> 
+                    ) 
+                })} 
             </div>       
         </div>
     );
