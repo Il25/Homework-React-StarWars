@@ -99,17 +99,26 @@
     transition: all 0.1s ease-in-out;
 }
 
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .name:hover {
-    color: #000;
+    color: black;
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 10px 15px grey;
 }
+
+a:hover {
+    color: black;
+}
+
 .columns {
     display: flex;
     align-items: center;
     flex-direction: column;
     text-align: center;
-    /* margin-bottom: 10px; */
 }
 
 @media screen and (max-width: 800px) {

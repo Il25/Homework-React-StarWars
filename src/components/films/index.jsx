@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import "./index.css";
 import "../main_style/index.css";
+import { Link } from "react-router-dom";
 
 const Films = () => {
     const[films, setFilms] = useState([]);
@@ -32,11 +33,14 @@ const Films = () => {
                         return films
                     }
                 }).map((films, i) => {
+                    let num = films.url.length;
                     return (
                         <div className="columns films">
                             <div key={i}>
                                 <p className="name">
-                                    {films.title}
+                                    <Link to={`/films/${num}`}>
+                                        {films.title}
+                                    </Link>
                                 </p>
                             </div>
                         </div> 

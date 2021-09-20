@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import "./index.css";
 import "../main_style/index.css";
+import { Link } from "react-router-dom";
 
 const Species = () => {
     const[species, setSpecies] = useState([]);
@@ -39,11 +40,14 @@ const Species = () => {
                         return species
                     }
                 }).map((species, i) => {
+                    let num = species.url.length;
                     return (
                         <div className="columns">
                             <div key={i}>
                                 <p className="name">
-                                    {species.name}
+                                    <Link to={`/species/${num}`}>
+                                        {species.name}
+                                    </Link>
                                 </p>
                             </div>
                         </div> 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import "./index.css";
 import "../main_style/index.css";
+import { Link } from "react-router-dom";
 
 const Planets = () => {
     const[planets, setPlanets] = useState([]);
@@ -39,11 +40,14 @@ const Planets = () => {
                         return planets
                     }
                 }).map((planets, i) => {
+                    let num = planets.url.length;
                     return (
                         <div className="columns">
                             <div key={i}>
                                 <p className="name">
-                                    {planets.name}
+                                    <Link to={`/planets/${num}`}>
+                                        {planets.name}
+                                    </Link>
                                 </p>
                             </div>
                         </div>  
