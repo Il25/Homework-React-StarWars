@@ -12,28 +12,44 @@ const Header = () => {
             <div className="header_navigation">
                 <ul>
                     <li>   
-                        <Link to="/">Home</Link>
+                        <Link to="/">
+                            Home
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/about">About</Link>
+                        <Link to="/about">
+                            About
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/people">Characters</Link> 
+                        <Link to="/people">
+                            Characters
+                        </Link> 
                     </li>
                     <li>
-                        <Link to="/planets">Planets</Link>
+                        <Link to="/planets">
+                            Planets
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/films">Films</Link>
+                        <Link to="/films">
+                            Films
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/species">Species</Link>
+                        <Link to="/species">
+                            Species
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/vehicles">Vehicles</Link>
+                        <Link to="/vehicles">
+                            Vehicles
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/starships">Starships</Link>
+                        <Link to="/starships">
+                            Starships
+                        </Link>
                     </li>
                 </ul>
             </div>
