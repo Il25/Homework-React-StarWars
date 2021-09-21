@@ -1,3 +1,7 @@
+.films_container {
+    margin-bottom: 50px;
+}
+
 .film_card {
     display: flex;
     width: 100%;
