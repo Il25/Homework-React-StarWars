@@ -2,6 +2,7 @@ import React from "react";
 import "./index.css";
 
 const About = () => {
+    
     return (
         <div className="about_container">
             <h1>

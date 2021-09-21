@@ -34,18 +34,20 @@ const Vehicles = () => {
                     <input type="text" className="search_input" placeholder="Enter the name of the Vehicles you want to find" onChange={(event) => setSearchVehicles(event.target.value)}></input>
                 </div>
                 {vehicles?.filter((vehicles) => {
-                    if(searchVehicles == "") {
+                    if(searchVehicles === "") {
                         return vehicles
                     } else if(vehicles.name.toLowerCase().includes(searchVehicles.toLowerCase())) {
                         return vehicles
                     }
                 }).map((vehicles, i) => {
-                    let num = vehicles.url.length;
+                    let vehicleUrl = vehicles.url;
+                    var r = /\d+/; 
+                    const num = vehicleUrl.match(r); 
                     return (
                         <div className="columns">
                             <div key={i}>
                                 <p className="name">
-                                    <Link to={`/vehicles/${num}`}>
+                                    <Link to={`/vehicles/${num[0]}`}>
                                         {vehicles.name}
                                     </Link>
                                 </p>

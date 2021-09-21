@@ -34,18 +34,20 @@ const Starships = () => {
                     <input type="text" className="search_input" placeholder="Enter the name of the Starships you want to find" onChange={(event) => setSearchStarships(event.target.value)}></input>
                 </div>
                 {starships?.filter((starships) => {
-                    if(searchStarships == "") {
+                    if(searchStarships === "") {
                         return starships
                     } else if(starships.name.toLowerCase().includes(searchStarships.toLowerCase())) {
                         return starships
                     }
                 }).map((starships, i) => {
-                    let num = starships.url.length;
+                    let starshipUrl = starships.url;
+                    var r = /\d+/; 
+                    const num = starshipUrl.match(r); 
                     return (
                         <div className="columns">
                             <div key={i}>
                                 <p className="name">
-                                    <Link to={`/starships/${num}`}>
+                                    <Link to={`/starships/${num[0]}`}>
                                         {starships.name}
                                     </Link>
                                 </p>

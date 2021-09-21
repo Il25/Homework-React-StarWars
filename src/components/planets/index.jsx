@@ -34,18 +34,20 @@ const Planets = () => {
                     <input type="text" className="search_input" placeholder="Enter the name of the Planets you want to find" onChange={(event) => setSearchPlanets(event.target.value)}></input>
                 </div>
                 {planets?.filter((planets) => {
-                    if(searchPlanets == "") {
+                    if(searchPlanets === "") {
                         return planets
                     } else if(planets.name.toLowerCase().includes(searchPlanets.toLowerCase())) {
                         return planets
                     }
                 }).map((planets, i) => {
-                    let num = planets.url.length;
+                    let planetUrl = planets.url;
+                    var r = /\d+/; 
+                    const num = planetUrl.match(r); 
                     return (
                         <div className="columns">
                             <div key={i}>
                                 <p className="name">
-                                    <Link to={`/planets/${num}`}>
+                                    <Link to={`/planets/${num[0]}`}>
                                         {planets.name}
                                     </Link>
                                 </p>

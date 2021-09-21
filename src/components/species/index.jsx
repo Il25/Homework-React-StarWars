@@ -34,18 +34,20 @@ const Species = () => {
                     <input tupe="text" className="search_input" placeholder="Enter the name of the Species you want to find" onChange={(event) => setSearchSpecies(event.target.value)}></input>
                 </div>
                 {species?.filter((species) => {
-                    if(searchSpecies == "") {
+                    if(searchSpecies === "") {
                         return species
                     } else if(species.name.toLowerCase().includes(searchSpecies.toLowerCase())) {
                         return species
                     }
                 }).map((species, i) => {
-                    let num = species.url.length;
+                    let speciesUrl = species.url;
+                    var r = /\d+/; 
+                    const num = speciesUrl.match(r); 
                     return (
                         <div className="columns">
                             <div key={i}>
                                 <p className="name">
-                                    <Link to={`/species/${num}`}>
+                                    <Link to={`/species/${num[0]}`}>
                                         {species.name}
                                     </Link>
                                 </p>

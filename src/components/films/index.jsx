@@ -27,18 +27,20 @@ const Films = () => {
                     <input type="text" className="search_input" placeholder="Enter the name of the Films you want to find" onChange={(event) => setSearchFilms(event.target.value)}></input>
                 </div>
                 {films?.filter((films) => {
-                    if(searchFilms == "") {
+                    if(searchFilms === "") {
                         return films
                     } else if(films.title.toLowerCase().includes(searchFilms.toLowerCase())) {
                         return films
                     }
                 }).map((films, i) => {
-                    let num = films.url.length;
+                    let filmUrl = films.url;
+                    var r = /\d+/; 
+                    const num = filmUrl.match(r); 
                     return (
                         <div className="columns films">
                             <div key={i}>
                                 <p className="name">
-                                    <Link to={`/films/${num}`}>
+                                    <Link to={`/films/${num[0]}`}>
                                         {films.title}
                                     </Link>
                                 </p>

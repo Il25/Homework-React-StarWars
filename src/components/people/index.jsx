@@ -17,7 +17,7 @@ const People = () => {
     };
   
     useEffect(() => {
-        getPeople("https://swapi.dev/api/people");
+        getPeople("https://swapi.dev/api/people"); 
     }, []);
     
     useEffect(() => {
@@ -34,20 +34,20 @@ const People = () => {
                     <input type="text" className="search_input" placeholder="Enter the name of the Characters you want to find" onChange={(event) => setSearchPeople(event.target.value)}></input>
                 </div>           
                 {people?.filter((people) => {
-                    if(searchPeople == "") {
+                    if(searchPeople === "") {
                         return people
                     } else if(people.name.toLowerCase().includes(searchPeople.toLowerCase())) {
                         return people
                     }
                 }).map((people, i) => {
-                    console.log(people.url)
-                    console.log(people.url.length)
-                    let num = people.url.length;
+                    let peopleUrl = people.url;
+                    var r = /\d+/; 
+                    const num = peopleUrl.match(r); 
                     return (
                         <div className="columns">
                             <div key={i}>
                                 <p className="name">
-                                    <Link to={`/people/${num}`}>
+                                    <Link to={`/people/${num[0]}`}>
                                         {people.name}
                                     </Link>
                                 </p>
