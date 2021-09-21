@@ -19,7 +19,6 @@
 
 .header_navigation li {
     display: inline;
-    color: white;
     list-style-type: none;
     border-left: 1px solid white;
     border-right: 1px solid white;
@@ -27,22 +26,23 @@
     transition: .5 all ease;
 }
 
-.header_navigation li:hover, li.active {
-    background-color: rgb(46, 46, 46);
+.header_navigation li:hover {
     cursor: pointer;
 }
 
-/* .header_navigation li.active {
-    background-color: rgb(46, 46, 46);
-} */
-
 .header_navigation a {
-    color: white;
+    color: rgb(175, 175, 175);
     text-decoration: none;
 }
 
+.header_navigation a:hover {
+    color: white;
+}
+
 .header_navigation a:focus {
-    text-decoration: white underline;
+    border-bottom: 3px solid white;
+    color: white;
+    padding-bottom: 5px;
 }
 
 @media screen and (max-width: 660px) {
