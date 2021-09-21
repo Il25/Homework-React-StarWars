@@ -135,3 +135,9 @@ a:hover {
         font-size: 24px;
     }   
 }
+
+@media screen and (max-width: 380px) {
+    .search_descr {
+        font-size: 20px;
+    }   
+}

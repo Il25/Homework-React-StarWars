@@ -40,6 +40,7 @@ const People = () => {
                         return people
                     }
                 }).map((people, i) => {
+                    console.log(people.url)
                     console.log(people.url.length)
                     let num = people.url.length;
                     return (
