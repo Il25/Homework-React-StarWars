@@ -8,9 +8,10 @@ const Films = () => {
     const [searchFilms, setSearchFilms] = useState("");
 
     const getFilms = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setFilms([...films, ...data.results]);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getFilms", e));
+        setFilms([...films, ...response.results]);
     };
 
     useEffect(() => {
@@ -37,8 +38,8 @@ const Films = () => {
                     var r = /\d+/; 
                     const num = filmUrl.match(r); 
                     return (
-                        <div className="columns films">
-                            <div key={i}>
+                        <div key={i} className="columns films">
+                            <div>
                                 <p className="name">
                                     <Link to={`/films/${num[0]}`}>
                                         {films.title}

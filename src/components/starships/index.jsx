@@ -10,10 +10,11 @@ const Starships = () => {
     const [searchStarships, setSearchStarships] = useState("");
 
     const getStarships = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setStarships([...starships, ...data.results]);
-        setAddUrl(data.next);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getStarships", e));
+        setStarships([...starships, ...response.results]);
+        setAddUrl(response.next);
     };    
 
     useEffect(() => {
@@ -21,7 +22,7 @@ const Starships = () => {
     }, []);
 
     useEffect(() => {
-        getStarships(addUrl);
+       addUrl && getStarships(addUrl);
     }, [count]);
 
     return (
@@ -44,8 +45,8 @@ const Starships = () => {
                     var r = /\d+/; 
                     const num = starshipUrl.match(r); 
                     return (
-                        <div className="columns">
-                            <div key={i}>
+                        <div key={i} className="columns">
+                            <div>
                                 <p className="name">
                                     <Link to={`/starships/${num[0]}`}>
                                         {starships.name}

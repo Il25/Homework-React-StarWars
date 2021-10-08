@@ -10,10 +10,11 @@ const Vehicles = () => {
     const [searchVehicles, setSearchVehicles] = useState("");
 
     const getVehicles = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setVehicles([...vehicles, ...data.results]);
-        setAddUrl(data.next);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getVehicles", e));
+        setVehicles([...vehicles, ...response.results]);
+        setAddUrl(response.next);
     };
 
     useEffect(() => {
@@ -21,7 +22,7 @@ const Vehicles = () => {
     }, []);
 
     useEffect(() => {
-        getVehicles(addUrl);
+       addUrl && getVehicles(addUrl);
     }, [count]);
 
     return (
@@ -44,8 +45,8 @@ const Vehicles = () => {
                     var r = /\d+/; 
                     const num = vehicleUrl.match(r); 
                     return (
-                        <div className="columns">
-                            <div key={i}>
+                        <div key={i} className="columns">
+                            <div>
                                 <p className="name">
                                     <Link to={`/vehicles/${num[0]}`}>
                                         {vehicles.name}

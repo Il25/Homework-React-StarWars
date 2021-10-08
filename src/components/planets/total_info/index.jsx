@@ -7,9 +7,10 @@ const TotalInfoPlanet = () => {
     const { num } = useParams();
 
     const getTotalInfoPlanet = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setPlanet(data);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getTotalInfoPlanet", e));
+        setPlanet(response);
     };
 
     useEffect(() => {

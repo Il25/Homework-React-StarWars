@@ -10,10 +10,11 @@ const People = () => {
     const [searchPeople, setSearchPeople] = useState("");
 
     const getPeople = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setPeople([...people, ...data.results]);
-        setAddUrl(data.next);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getPeople", e));
+        setPeople([...people, ...response.results]);
+        setAddUrl(response.next);
     };
   
     useEffect(() => {
@@ -21,7 +22,7 @@ const People = () => {
     }, []);
     
     useEffect(() => {
-        getPeople(addUrl);
+        addUrl && getPeople(addUrl);
     }, [count]);
 
     return (
@@ -44,8 +45,8 @@ const People = () => {
                     var r = /\d+/; 
                     const num = peopleUrl.match(r); 
                     return (
-                        <div className="columns">
-                            <div key={i}>
+                        <div key={i} className="columns">
+                            <div>
                                 <p className="name">
                                     <Link to={`/people/${num[0]}`}>
                                         {people.name}

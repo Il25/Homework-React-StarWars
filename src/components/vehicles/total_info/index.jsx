@@ -7,9 +7,10 @@ const TotalInfoVehicle = () => {
     const { num } = useParams();
     
     const getTotalInfoVehicle = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setVehicle(data);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getTotalInfoVehicle", e));
+        setVehicle(response);
     };
 
     useEffect(() => {

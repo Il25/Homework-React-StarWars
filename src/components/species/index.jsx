@@ -10,10 +10,11 @@ const Species = () => {
     const [searchSpecies, setSearchSpecies] = useState("");
 
     const getSpecies = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setSpecies([...species, ...data.results]);
-        setAddUrl(data.next);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getSpecies", e));
+        setSpecies([...species, ...response.results]);
+        setAddUrl(response.next);
     };
 
     useEffect(() => {
@@ -21,7 +22,7 @@ const Species = () => {
     }, []);
 
     useEffect(() => {
-        getSpecies(addUrl);
+       addUrl && getSpecies(addUrl);
     }, [count]);
 
     return (
@@ -44,8 +45,8 @@ const Species = () => {
                     var r = /\d+/; 
                     const num = speciesUrl.match(r); 
                     return (
-                        <div className="columns">
-                            <div key={i}>
+                        <div key={i} className="columns">
+                            <div>
                                 <p className="name">
                                     <Link to={`/species/${num[0]}`}>
                                         {species.name}
