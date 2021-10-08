@@ -7,9 +7,10 @@ const TotalInfoSpecies = () => {
     const { num } = useParams();
 
     const getTotalInfoSpecies = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setSpecies(data);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getTotalInfoSpecies", e));
+        setSpecies(response);
     };
 
     useEffect(() => {

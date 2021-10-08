@@ -7,9 +7,10 @@ const TotalInfoStarship = () => {
     const { num } = useParams();
 
     const getTotalInfoStarship = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setStarship(data);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getTotalInfoStarship", e));
+        setStarship(response);
     };
 
     useEffect(() => {

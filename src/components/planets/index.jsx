@@ -10,10 +10,11 @@ const Planets = () => {
     const [searchPlanets, setSearchPlanets] = useState("");
         
     const getPlanets = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setPlanets([...planets, ...data.results]);
-        setAddUrl(data.next);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getPlanets", e));
+        setPlanets([...planets, ...response.results]);
+        setAddUrl(response.next);
     };
 
     useEffect(() => {
@@ -21,7 +22,7 @@ const Planets = () => {
     }, []);
 
     useEffect(() => {
-        getPlanets(addUrl);
+       addUrl && getPlanets(addUrl);
     }, [count]);
 
     return (
@@ -44,8 +45,8 @@ const Planets = () => {
                     var r = /\d+/; 
                     const num = planetUrl.match(r); 
                     return (
-                        <div className="columns">
-                            <div key={i}>
+                        <div key={i} className="columns">
+                            <div>
                                 <p className="name">
                                     <Link to={`/planets/${num[0]}`}>
                                         {planets.name}

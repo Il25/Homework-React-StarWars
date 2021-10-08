@@ -7,9 +7,10 @@ const TotalInfoFilm = () => {
     const { num } = useParams();
 
     const getTotalInfoFilm = async(url) => {
-        const response = await fetch(url);
-        let data = await response.json();
-        setFilm(data);
+        const response = await fetch(url)
+            .then((res) => res.json())
+            .catch((e) => console.log("getTotalInfoFilm", e));
+        setFilm(response);
     };
 
     useEffect(() => {
